@@ -52,7 +52,8 @@ def main(video_path, start_frame=0, end_frame=None, zoom_factor=1.1, rotation_an
 
     alpha = 0.9
     stripe_width = 50
-
+    oldMax = 0
+    oldMin = 0
     while True:
         # Read a frame from the video
         ret, frame = cap.read()
@@ -160,6 +161,12 @@ def main(video_path, start_frame=0, end_frame=None, zoom_factor=1.1, rotation_an
             if y < miny:
                 miny = y
             cv2.circle(maxi, (x, y), 3, (0, 255, 0), -1)
+        
+        #smoothing
+        maxy = int(0.25*maxy + 1.75*oldMax) // 2
+        miny = int(0.25*miny + 1.75*oldMin) // 2
+        maxy *= 8
+        miny *= 8
 
         stepy = (maxy-miny)/10
         stepAdj = stepy*.98
@@ -181,6 +188,7 @@ def main(video_path, start_frame=0, end_frame=None, zoom_factor=1.1, rotation_an
         font_thickness = 2
         font_face = cv2.FONT_HERSHEY_SIMPLEX
         line_height = 40
+        
         
         binary_rep = ""
         gray_rev = gray_rep[::-1]
