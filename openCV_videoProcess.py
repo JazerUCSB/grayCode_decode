@@ -4,7 +4,7 @@ import os
 import numpy as np  # Add this line to import numpy
 from skimage import draw
 
-def main(video_path, start_frame=0, end_frame=None, zoom_factor=1.0, rotation_angle=0, translation_x=0, translation_y=0):
+def main(video_path, start_frame=0, end_frame=None, zoom_factor=1.1, rotation_angle=-16, translation_x=-60, translation_y=-80):
     # Open the video file
     cap = cv2.VideoCapture(video_path)
 
@@ -240,16 +240,16 @@ def main(video_path, start_frame=0, end_frame=None, zoom_factor=1.0, rotation_an
 
 if __name__ == "__main__":
     # Check if the correct number of command-line arguments are provided
-    if len(sys.argv) != 8:
-        print("Usage: python script_name.py video_file_path start_frame end_frame zoom_factor rotation_angle translation_x translation_y")
-        sys.exit(1)
+    #if len(sys.argv) != 8:
+        #print("Usage: python script_name.py video_file_path start_frame end_frame zoom_factor rotation_angle translation_x translation_y")
+        #sys.exit(1)
 
     video_path = sys.argv[1]
-    start_frame = int(sys.argv[2])
-    end_frame = int(sys.argv[3])
-    zoom_factor = float(sys.argv[4])
-    rotation_angle = float(sys.argv[5])
-    translation_x = float(sys.argv[6])
-    translation_y = float(sys.argv[7])
+    start_frame = 0 #int(sys.argv[2])
+    end_frame = None #int(sys.argv[3])
+    zoom_factor = 1.1 #float(sys.argv[4])
+    rotation_angle = -16 # float(sys.argv[5])
+    translation_x = -60 #float(sys.argv[6])
+    translation_y = -80 #float(sys.argv[7])
 
     main(video_path, start_frame, end_frame, zoom_factor, rotation_angle, translation_x, translation_y)
